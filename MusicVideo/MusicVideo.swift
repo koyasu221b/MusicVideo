@@ -20,6 +20,8 @@ private var _vName:String
     private var _vLinkToiTunes:String
     private var _vReleaseDte:String
     
+    var vImageData: NSData?
+    
     var vName: String {
         return _vName
     }
