@@ -10,7 +10,7 @@ import Foundation
 
 class APIManager {
 
-    func loadData(urlString: String, completion: @escaping (String)-> Void){
+    func loadData(urlString: String, completion: @escaping ([Videos])-> Void){
         
         let config = URLSessionConfiguration.ephemeral
         
@@ -20,48 +20,45 @@ class APIManager {
         
         let url = URL(string: urlString)!
         
-//        let task = session.dataTask(with: url, completionHandler: {
-//            (data, response, error) -> Void in
-//            
-//            DispatchQueue.main.async {
-//                if error != nil {
-//                    completion((error?.localizedDescription)!)
-//                }else {
-//                    completion("URLSession successful!")
-//                    print(data)
-//                }
-//            }
-//            
-//           
-//        })
-//        
-//        task.resume()
         
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
             
             if error != nil {
-                DispatchQueue.main.async {
-                    completion((error?.localizedDescription)!)
-                    
-                }
+               print(error!.localizedDescription)
             }else{
-                print(data)
+              
                 do{
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? JSONDictionary{
-                        print(json)
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? JSONDictionary,
+                        let feed = json["feed"] as? JSONDictionary,
+                        let entries = feed["entry"] as? JSONArray {
+                        
+                        //print(json)
+                        var videos = [Videos]()
+                        for entry in entries {
+                            let entry = Videos(data: entry as! JSONDictionary)
+                            videos.append(entry)
+                            
+                        }
+                        
+                        let i = videos.count
+                        print("iTunesApiManager - total count --> \(i)")
+                        print(" ")
+                        
                         
                         DispatchQueue.global(qos: .userInitiated).async {
                             DispatchQueue.main.async {
-                                completion("JSONSerialization Successful")
+                                //completion("JSONSerialization Successful")
+                                completion(videos)
                             }
                         }
                         
                     }
                 }catch{
-                    DispatchQueue.main.async {
-                        completion("error in JSONSerialization")
-                    }
+                    //DispatchQueue.main.async {
+                    //    completion("error in JSONSerialization")
+                    //}
+                    print("error in JSONSerialization")
                 }
             }
         })

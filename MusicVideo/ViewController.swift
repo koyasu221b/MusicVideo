@@ -9,34 +9,39 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    
+    var videos = [Videos]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let api = APIManager()
-        api.loadData(urlString: "https://itunes.apple.com/tw/rss/topmusicvideos/limit=10/json"){ (result:String) in
-            print(result)
-            
-            let alert = UIAlertController(title: result, message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            
-            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default){
-                    action -> Void in
-            }
-            
-            alert.addAction(okAction)
-            //self.present(alert, animated: true)
-            
-            self.present(alert, animated: true, completion: nil)
-            
-            
-        }
+        
+        api.loadData(urlString: "https://itunes.apple.com/tw/rss/topmusicvideos/limit=10/json", completion: didLoadData)
+        
+       
     }
     
-//    func didLoadData(result:String){
-//        print(result)
-//    }
-
+    func didLoadData(videos:[Videos]){
+        
+        self.videos = videos
+        for item in videos {
+            print("name = \(item.vName)")
+        }
+        
+        for (index, item) in videos.enumerated(){
+            print("\(index) name = \(item.vName)")
+        }
+        
+//        for i in 0..<videos.count {
+//            let video = videos[i]
+//            print("\(i) name = \(video.vName)")
+//        }
+    }
+    
+  
     
 
     
