@@ -17,6 +17,7 @@
 		BEEF3F901DF44E1700241874 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF3F8F1DF44E1700241874 /* APIManager.swift */; };
 		BEEF3F931DF849F500241874 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF3F921DF849F500241874 /* Constants.swift */; };
 		BEEF3F951DF84CE300241874 /* MusicVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF3F941DF84CE300241874 /* MusicVideo.swift */; };
+		BEEF3F9A1DFC3EB400241874 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEF3F991DFC3EB400241874 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,9 @@
 		BEEF3F8F1DF44E1700241874 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		BEEF3F921DF849F500241874 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEEF3F941DF84CE300241874 /* MusicVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideo.swift; sourceTree = "<group>"; };
+		BEEF3F971DFC3EB300241874 /* MusicVideo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicVideo-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEEF3F981DFC3EB400241874 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BEEF3F991DFC3EB400241874 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		BEEF3F511DF3DA0400241874 = {
 			isa = PBXGroup;
 			children = (
+				BEEF3F961DFC3DF200241874 /* Obj-c */,
 				BEEF3F5C1DF3DA0400241874 /* MusicVideo */,
 				BEEF3F711DF3DA0500241874 /* MusicVideoTests */,
 				BEEF3F7C1DF3DA0500241874 /* MusicVideoUITests */,
@@ -174,6 +179,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		BEEF3F961DFC3DF200241874 /* Obj-c */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF3F981DFC3EB400241874 /* Reachability.h */,
+				BEEF3F991DFC3EB400241874 /* Reachability.m */,
+				BEEF3F971DFC3EB300241874 /* MusicVideo-Bridging-Header.h */,
+			);
+			name = "Obj-c";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -242,6 +257,7 @@
 				TargetAttributes = {
 					BEEF3F591DF3DA0400241874 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					BEEF3F6D1DF3DA0500241874 = {
@@ -312,6 +328,7 @@
 				BEEF3F601DF3DA0400241874 /* ViewController.swift in Sources */,
 				BEEF3F951DF84CE300241874 /* MusicVideo.swift in Sources */,
 				BEEF3F5E1DF3DA0400241874 /* AppDelegate.swift in Sources */,
+				BEEF3F9A1DFC3EB400241874 /* Reachability.m in Sources */,
 				BEEF3F931DF849F500241874 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,10 +481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MusicVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.koyasu221b.MusicVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicVideo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -476,10 +496,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MusicVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.koyasu221b.MusicVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicVideo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
