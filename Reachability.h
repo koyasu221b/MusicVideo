@@ -39,7 +39,7 @@ extern NSString *kReachabilityChangedNotification;
 /*!
  * Checks whether the default route is available. Should be used by applications that do not connect to a particular host.
  */
-+ (instancetype)reachabilityForInternetConnection;
+    + (instancetype)reachabilityForInternetConnection;
 
 
 #pragma mark reachabilityForLocalWiFi

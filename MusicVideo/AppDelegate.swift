@@ -7,7 +7,9 @@
 //
 
 import UIKit
-var reachability: Reachability?
+//var reachability : Reachability?
+
+var reachability = Reachability()
 
 var reachabilityStatus = WIFI
 
@@ -16,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var internetCheck: Reachability?
+    //var internetCheck: Reachability?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -26,18 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        URLCache.shared = sharedCache;
         
-        NotificationCenter.default.addObserver(self, selector: Selector("reachabilityChanged:"), name: NSNotification.Name.reachabilityChanged, object: nil)
+    //NotificationCenter.default.addObserver(self, selector: Selector(("reachabilityChanged:")), name: NSNotification.Name.reachabilityChanged, object: nil)
+   
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachablityChanged(notification:)), name: NSNotification.Name.reachabilityChanged, object: nil)
         
-        internetCheck = Reachability.forInternetConnection()
-        internetCheck?.startNotifier()
+        //internetCheck = Reachability.forInternetConnection()
+        //internetCheck?.startNotifier()
+        reachability = Reachability.forInternetConnection()
+        reachability.startNotifier()
+    
         
+        print("application start")
         
         return true
     }
     
-    func reachablityChanged(notification: Notification){
-        reachability = notification.object as? Reachability
-        statusChangedWithReachability(currentReachabilityStatus: reachability!)
+    func reachablityChanged( notification: Notification){
+        print("call reachablityChanged!")
+        reachability = (notification.object as? Reachability)!
+        statusChangedWithReachability(currentReachabilityStatus: reachability)
     
     }
     
@@ -52,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name.reachabilityChanged, object: nil)
+        //NotificationCenter.default.post(name: NSNotification.Name.reachabilityChanged, object: nil)
         
     }
 
