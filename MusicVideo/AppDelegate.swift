@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    //var internetCheck: Reachability?
+    var internetCheck: Reachability?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -30,12 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     //NotificationCenter.default.addObserver(self, selector: Selector(("reachabilityChanged:")), name: NSNotification.Name.reachabilityChanged, object: nil)
    
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reachablityChanged(notification:)), name: NSNotification.Name.reachabilityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachablityChanged(notification:)), name: NSNotification.Name.reachabilityChanged, object: nil)
         
         //internetCheck = Reachability.forInternetConnection()
         //internetCheck?.startNotifier()
         reachability = Reachability.forInternetConnection()
         reachability.startNotifier()
+        statusChangedWithReachability(currentReachabilityStatus: reachability)
     
         
         print("application start")
@@ -43,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func reachablityChanged( notification: Notification){
+    func reachablityChanged(notification: NSNotification){
         print("call reachablityChanged!")
         reachability = (notification.object as? Reachability)!
         statusChangedWithReachability(currentReachabilityStatus: reachability)
@@ -61,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        //NotificationCenter.default.post(name: NSNotification.Name.reachabilityChanged, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("abc"), object: nil)
         
     }
 

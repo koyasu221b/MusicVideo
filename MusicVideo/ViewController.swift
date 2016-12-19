@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: NSNotification.Name.reachabilityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reachabilityStatusChanged), name: NSNotification.Name("abc"), object: nil)
         
         //NotificationCenter.default.addObserver(self, selector: selector("reachabilityStatusChanged"), name: NSNotification.Name.reachabilityChanged, object: nil)
         
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     func didLoadData(videos:[Videos]){
         
-        print(reachabilityStatus)
+        //print(reachabilityStatus)
         
         self.videos = videos
         for item in videos {
